@@ -1,11 +1,164 @@
-<section class="section">
-    <h1>Contact Us</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Advisync</title>
 
-    <form>
-        <input type="text" placeholder="Prashanth Rangu"><br><br>
-        <input type="email" placeholder="connect@advisync.in"><br><br>
-        <textarea placeholder="Message"></textarea><br><br>
-        <button class="btn">Submit</button>
-    </form>
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .hero {
+            padding: 100px 60px;
+            background: linear-gradient(to right, #0B1F3A, #09172b);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            color: #ccc;
+            max-width: 600px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 60px;
+        }
+
+        .contact-info {
+            background: #09172b;
+            padding: 30px;
+            border-top: 3px solid #D4AF37;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .form-box {
+            background: #09172b;
+            padding: 30px;
+            border-top: 3px solid #D4AF37;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: none;
+            outline: none;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        .btn {
+            background: #D4AF37;
+            color: black;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .map {
+            padding: 60px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+        }
+
+        @media(max-width: 768px){
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Advisync</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="insights.html">Insights</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Get in Touch</h1>
+    <p>
+        Have a compliance query or need strategic advisory? 
+        Our team is here to help you navigate with confidence.
+    </p>
 </section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-container">
+
+    <!-- LEFT SIDE -->
+    <div class="contact-info">
+        <h3>Contact Information</h3>
+
+        <p><strong>Email:</strong> contact@advisync.in</p>
+        <p><strong>Phone:</strong> +91-XXXXXXXXXX</p>
+
+        <p><strong>Locations:</strong></p>
+        <p>Bangalore</p>
+        <p>Hyderabad</p>
+
+        <p style="margin-top:20px;">
+            Our team typically responds within 24 hours.
+        </p>
+    </div>
+
+    <!-- RIGHT SIDE FORM -->
+    <div class="form-box">
+        <h3>Send us a message</h3>
+
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Your Message"></textarea>
+
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+
+</section>
+
+<!-- MAP -->
+<section class="map">
+    <iframe 
+        src="https://maps.google.com/maps?q=bangalore&t=&z=13&ie=UTF8&iwloc=&output=embed">
+    </iframe>
+</section>
+
+<footer>
+    <p>© 2026 Advisync | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
 <link rel="stylesheet" href="styles.css">
