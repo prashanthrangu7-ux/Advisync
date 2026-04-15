@@ -1,12 +1,164 @@
-<section class="section">
-    <h2>Insights & Updates</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | Advisync</title>
 
-    <div>
-        <h3><a href="insight-detail.html">GST Updates April 2026</a></h3>
-        <p>Latest compliance changes</p>
+    <link rel="stylesheet" href="css/styles.css">
 
-        <h3><a href="insight-detail.html">Tax Planning Trends</a></h3>
-        <p>Strategic insights for FY 26-27</p>
-    </div>
+    <style>
+        .hero {
+            padding: 100px 60px;
+            background: linear-gradient(to right, #0B1F3A, #09172b);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            color: #ccc;
+            max-width: 600px;
+        }
+
+        .filters {
+            padding: 20px 60px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            cursor: pointer;
+        }
+
+        .insights-container {
+            padding: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .insight-card {
+            background: #09172b;
+            padding: 25px;
+            border-top: 3px solid #D4AF37;
+            transition: 0.3s;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .tag {
+            font-size: 12px;
+            color: #D4AF37;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        .search-box {
+            padding: 20px 60px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Advisync</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="insights.html">Insights</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Insights & Intelligence</h1>
+    <p>
+        Stay ahead with expert analysis, regulatory updates, and actionable insights 
+        across compliance, taxation, and finance.
+    </p>
 </section>
+
+<!-- SEARCH -->
+<div class="search-box">
+    <input type="text" placeholder="Search insights...">
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+    <div class="filter-btn">All</div>
+    <div class="filter-btn">GST</div>
+    <div class="filter-btn">Income Tax</div>
+    <div class="filter-btn">Compliance</div>
+    <div class="filter-btn">Advisory</div>
+</div>
+
+<!-- INSIGHTS GRID -->
+<section class="insights-container">
+
+    <div class="insight-card fade-in">
+        <div class="tag">GST</div>
+        <h3>GST Updates – April 2026</h3>
+        <p>Key changes in GST filings and their impact on businesses.</p>
+        <div class="date">15 April 2026</div>
+    </div>
+
+    <div class="insight-card fade-in">
+        <div class="tag">Income Tax</div>
+        <h3>New Tax Regime – Strategic Outlook</h3>
+        <p>How businesses and individuals should plan for FY 2026-27.</p>
+        <div class="date">10 April 2026</div>
+    </div>
+
+    <div class="insight-card fade-in">
+        <div class="tag">Compliance</div>
+        <h3>ROC Filing Risks to Watch</h3>
+        <p>Common mistakes companies make in statutory filings.</p>
+        <div class="date">5 April 2026</div>
+    </div>
+
+    <div class="insight-card fade-in">
+        <div class="tag">Advisory</div>
+        <h3>Financial Planning for Growth</h3>
+        <p>Key financial strategies to scale your business efficiently.</p>
+        <div class="date">1 April 2026</div>
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;">
+    <h2>Need Expert Guidance?</h2>
+    <p style="margin:20px 0;">
+        Connect with us for tailored compliance and advisory solutions.
+    </p>
+    <a href="contact.html" class="btn">Schedule Consultation</a>
+</section>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
 <link rel="stylesheet" href="styles.css">
