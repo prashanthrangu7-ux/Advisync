@@ -98,3 +98,11 @@ window.addEventListener("scroll", () => {
         header.style.boxShadow = "none";
     }
 });
+const toggleBtn = document.getElementById("contactToggle");
+const options = document.querySelector(".contact-options");
+
+if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+        options.classList.toggle("show");
+    });
+}
