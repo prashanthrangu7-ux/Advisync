@@ -157,3 +157,75 @@ nav a:hover {
 .email {
     background: #444;
 }
+/* CHATBOT */
+.chatbot-container {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    z-index: 1000;
+}
+
+.chat-launcher {
+    background: #D4AF37;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* BOX */
+.chatbot-box {
+    width: 300px;
+    background: #09172b;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* HEADER */
+.chat-header {
+    background: #0B1F3A;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* BODY */
+.chat-body {
+    height: 250px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.bot-message {
+    background: #132f55;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.user-message {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+/* INPUT */
+.chat-input {
+    display: flex;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+}
+
+.chat-input button {
+    background: #D4AF37;
+    border: none;
+    padding: 10px;
+}
