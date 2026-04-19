@@ -9,13 +9,18 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: var(--navy);
     color: white;
+    padding-top: 80px;
 }
-
 header {
     display: flex;
     justify-content: space-between;
     padding: 20px 60px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    position: sticky;   /* 👈 THIS IS THE KEY */
+    top: 0;             /* 👈 sticks to top */
+    z-index: 1000;      /* 👈 stays above content */
+    background: #0B1F3A; /* 👈 prevents transparency issues */
 }
 
 .logo {
@@ -43,12 +48,4 @@ nav a:hover {
     color: black;
     padding: 10px 20px;
     text-decoration: none;
-}
-/* ===== STICKY HEADER ===== */
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #0B1F3A; /* ensure visibility */
-    transition: all 0.3s ease;
 }
