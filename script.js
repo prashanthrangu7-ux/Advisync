@@ -106,3 +106,61 @@ if (toggleBtn) {
         options.classList.toggle("show");
     });
 }
+// TOGGLE CHAT
+function toggleChat() {
+    const chat = document.getElementById("chatbox");
+    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+
+// SEND MESSAGE
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    const chatBody = document.getElementById("chatBody");
+
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    // Add user message
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-message";
+    userMsg.innerText = userText;
+    chatBody.appendChild(userMsg);
+
+    // Bot response
+    const botMsg = document.createElement("div");
+    botMsg.className = "bot-message";
+    botMsg.innerText = getBotResponse(userText);
+    chatBody.appendChild(botMsg);
+
+    input.value = "";
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+
+// SIMPLE AI LOGIC
+function getBotResponse(return "For detailed help, chat with us on WhatsApp: https://wa.me/918501033023") {
+    input = input.toLowerCase();
+
+    if (input.includes("service")) {
+        return "We offer GST, Income Tax, Compliance, Audit and Advisory services.";
+    }
+
+    if (input.includes("contact") || input.includes("phone")) {
+        return "You can reach us via Contact page or WhatsApp.";
+    }
+
+    if (input.includes("location")) {
+        return "We operate in Bangalore and Hyderabad.";
+    }
+
+    if (input.includes("gst")) {
+        return "We provide GST advisory, filings and litigation support.";
+    }
+
+    if (input.includes("tax")) {
+        return "We handle income tax, international taxation and planning.";
+    }
+
+    return "Thanks for your question. Please contact us for detailed assistance.";
+}
