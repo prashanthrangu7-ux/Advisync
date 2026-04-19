@@ -204,7 +204,29 @@
 <footer>
     <p>© 2026 Advisync | All Rights Reserved</p>
 </footer>
+<div class="chatbot-container">
 
+    <div class="chatbot-box" id="chatbox">
+        <div class="chat-header">
+            <span>Advisync Assistant</span>
+            <button onclick="toggleChat()">×</button>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="bot-message">Hi 👋 How can I assist you today?</div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your question...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <button class="chat-launcher" onclick="toggleChat()">
+        💬
+    </button>
+
+</div>
 </body>
 </html>
 <link rel="stylesheet" href="styles.css">
