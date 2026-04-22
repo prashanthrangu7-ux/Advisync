@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Tools | Advisync</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0b0f1a;
+      color: #fff;
+    }
+
+    header {
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    header h1 {
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: gold;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: gold;
+    }
+
+    .hero {
+      padding: 100px 60px;
+      text-align: center;
+      background: radial-gradient(circle at top, #111827, #020617);
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .tools {
+      padding: 80px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #0f172a, #020617);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border: 1px solid gold;
+    }
+
+    .card h3 {
+      color: gold;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #bbb;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(90deg, #020617, #0f172a);
+    }
+
+    .cta h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .cta button {
+      padding: 14px 30px;
+      background: gold;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Advisync</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="business-tools.html">Business Tools</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>AI Powered Business Intelligence Tools</h2>
+  <p>
+    Unlock next-generation financial visibility through AI-driven analytics, automated reconciliation engines, and real-time compliance intelligence platforms.
+  </p>
+</section>
+
+<section class="tools">
+
+  <div class="card">
+    <h3>Cash Flow Forecast Engine</h3>
+    <p>
+      Predict liquidity positions with precision using AI models that analyze receivables, payables, and historical trends to deliver dynamic cash outlooks.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Automated Reconciliation Suite</h3>
+    <p>
+      Eliminate manual effort with intelligent matching algorithms for bank, GST, and ledger reconciliations, ensuring accuracy and speed.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Compliance Dashboard</h3>
+    <p>
+      Centralized compliance visibility with real-time tracking of GST, TDS, ROC, and statutory filings powered by smart alerts.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Financial Health Analytics</h3>
+    <p>
+      Advanced ratio analysis, anomaly detection, and AI insights to help CFOs make strategic, data-driven decisions.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Variance & Trend Analyzer</h3>
+    <p>
+      Identify performance deviations and uncover trends across periods with automated variance reporting tools.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>AI Audit Assistant</h3>
+    <p>
+      Accelerate audit processes with AI-driven document review, risk flagging, and intelligent sampling techniques.
+    </p>
+  </div>
+
+</section>
+
+<section class="cta">
+  <h2>Transform Your Finance Function</h2>
+  <button onclick="contact()">Request Demo</button>
+</section>
+
+<footer>
+  © 2026 Advisync. All rights reserved.
+</footer>
+
+<script>
+function contact() {
+  alert("We will connect with you shortly.");
+}
+</script>
+
+</body>
+</html>
