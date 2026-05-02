@@ -46,11 +46,24 @@ if (header) {
 
 // ===== ACTIVE NAV LINK =====
 const navLinks = document.querySelectorAll('nav a');
+const navToggle = document.getElementById('navToggle');
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        const isOpen = document.body.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+}
 
 navLinks.forEach(link => {
     if (link.href === window.location.href) {
         link.style.color = '#D4AF37';
     }
+
+    link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+        navToggle?.setAttribute('aria-expanded', 'false');
+    });
 });
 
 // ===== FORM VALIDATION =====
