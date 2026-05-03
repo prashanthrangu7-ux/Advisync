@@ -4,7 +4,9 @@
 
 :root {
     --navy: #0B1F3A;
-    --navy-light: #132f55;
+    --navy-light: #2f4f78;
+    --silver: #c0c7d1;
+    --silver-soft: #e2e6ec;
     --gold: #D4AF37;
     --gold-soft: #e6c76a;
     --text: #ffffff;
@@ -204,12 +206,21 @@ nav a:hover::after {
 ========================= */
 
 .card {
-    background: linear-gradient(145deg, #0f223d, #09172b);
+    background: linear-gradient(145deg, #2f4f78, #c0c7d1);
     padding: 30px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(226,230,236,0.45);
 
     transition: all 0.3s ease;
+}
+
+
+.card h3 {
+    color: #0b1f3a;
+}
+
+.card p {
+    color: #1f3350;
 }
 
 .card:hover {
@@ -227,7 +238,7 @@ nav a:hover::after {
     justify-content: space-around;
     text-align: center;
     padding: 60px;
-    background: var(--bg-dark);
+    background: linear-gradient(145deg, #243f62, #b9c2cd);
 }
 
 .stats h2 {
