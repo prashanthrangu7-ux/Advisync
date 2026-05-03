@@ -7,90 +7,7 @@
 
     <link rel="stylesheet" href="styles.css">
 
-    <style>
-        .hero {
-            padding: 120px 60px;
-            background: linear-gradient(to right, #0B1F3A, #09172b);
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            max-width: 750px;
-            line-height: 1.2;
-        }
-
-        .hero span {
-            color: #D4AF37;
-        }
-
-        .hero p {
-            margin-top: 20px;
-            max-width: 600px;
-            color: #ccc;
-        }
-
-        .hero-buttons {
-            margin-top: 30px;
-        }
-
-        .btn-outline {
-            border: 1px solid #D4AF37;
-            color: #D4AF37;
-            padding: 12px 25px;
-            margin-left: 15px;
-            text-decoration: none;
-        }
-
-        .section-dark {
-            background: #09172b;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 32px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: #0B1F3A;
-            padding: 30px;
-            border-top: 3px solid #D4AF37;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            padding: 60px;
-        }
-
-        .stats h2 {
-            color: #D4AF37;
-        }
-
-        .cta {
-            text-align: center;
-            padding: 80px 60px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-    </style>
+    
 </head>
 
 <body>
@@ -109,7 +26,7 @@
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero fade-in">
     <h1>
         Transforming <span>Compliance</span> into 
         <span>Strategic Advantage</span>
@@ -121,13 +38,18 @@
     </p>
 
     <div class="hero-buttons">
+        <div class="trust-pills">
+            <span>Trusted by Growth-Stage Teams</span>
+            <span>Response Within 1 Business Day</span>
+            <span>Dedicated Expert Advisors</span>
+        </div>
         <a href="services.html" class="btn">Explore Services</a>
         <a href="contact.html" class="btn-outline">Get Consultation</a>
     </div>
 </section>
 
 <!-- SERVICES PREVIEW -->
-<section class="section">
+<section class="section fade-in">
     <h2 class="section-title">Our Capabilities</h2>
 
     <div class="grid-3">
@@ -151,7 +73,7 @@
 </section>
 
 <!-- STATS -->
-<section class="section-dark">
+<section class="section-dark fade-in">
     <div class="stats">
         <div>
             <h2>500+</h2>
@@ -171,7 +93,7 @@
 </section>
 
 <!-- INSIGHTS -->
-<section class="section">
+<section class="section fade-in">
     <h2 class="section-title">Latest Insights</h2>
 
     <div class="grid-3">
@@ -194,8 +116,27 @@
     </div>
 </section>
 
+<!-- WHY ADVISYNC -->
+<section class="section fade-in">
+    <h2 class="section-title">Why Firms Choose Advisync</h2>
+    <div class="value-grid">
+        <div class="value-item">
+            <h3>Proactive, Not Reactive</h3>
+            <p>We identify compliance risks early and build practical controls before they become costly issues.</p>
+        </div>
+        <div class="value-item">
+            <h3>Business-Aligned Advice</h3>
+            <p>Every recommendation is grounded in your growth goals, not just checkbox compliance.</p>
+        </div>
+        <div class="value-item">
+            <h3>Leadership Visibility</h3>
+            <p>Clear dashboards and concise updates that help promoters and finance heads make faster decisions.</p>
+        </div>
+    </div>
+</section>
+
 <!-- CTA -->
-<section class="cta">
+<section class="cta fade-in">
     <h2>Ready to Simplify Compliance?</h2>
     <p style="margin:20px 0;">
         Partner with Advisync to streamline compliance and unlock growth.

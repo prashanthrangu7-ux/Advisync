@@ -154,6 +154,54 @@ nav a:hover::after {
     margin-top: 20px;
 }
 
+
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.trust-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.trust-pills span {
+    font-size: 12px;
+    color: var(--silver-soft);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.04);
+}
+
+.section-dark {
+    background: var(--bg-dark);
+}
+
+.cta {
+    text-align: center;
+    padding: 80px 60px;
+}
+
+.value-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.value-item {
+    padding: 24px;
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 12px;
+    background: rgba(9,23,43,0.45);
+}
+
 /* =========================
    BUTTONS
 ========================= */
@@ -198,6 +246,7 @@ nav a:hover::after {
 }
 
 .grid-3 {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
@@ -469,6 +518,11 @@ footer {
     .hero-buttons {
         display: grid;
         gap: 12px;
+    }
+
+    .trust-pills span {
+        width: 100%;
+        text-align: center;
     }
 
     .btn,
