@@ -119,6 +119,18 @@ if (toggleBtn && options) {
 
 // ===== CHATBOT =====
 const CAVI_API_ENDPOINT = '/api/chat';
+const CAVI_FALLBACK_REPLY = 'I can help with Advisync services, GST compliance, ITC/TDS reconciliation, AP/AR reconciliation, MIS, cash-flow insights, and CFO advisory. You can contact Advisync at contact@advisync.in or +91-8501033023.';
+
+async function parseChatResponse(response) {
+    const contentType = response.headers.get('content-type') || '';
+
+    if (contentType.includes('application/json')) {
+        return response.json();
+    }
+
+    return {};
+}
+
 
 function createChatbotWidget() {
     const widget = document.createElement('div');
@@ -226,17 +238,18 @@ async function sendMessage() {
             body: JSON.stringify({ message: userText }),
         });
 
-        const data = await response.json();
+        const data = await parseChatResponse(response);
 
         if (!response.ok) {
             throw new Error(data?.error || 'Unable to get a response right now.');
         }
 
         botMsg.classList.remove('is-thinking');
-        botMsg.innerText = data.reply || 'I could not generate a response. Please try again.';
+        botMsg.innerText = data.reply || CAVI_FALLBACK_REPLY;
     } catch (error) {
+        console.error(error);
         botMsg.classList.remove('is-thinking');
-        botMsg.innerText = 'Sorry, CAVi is unavailable right now. Please try again later or contact Advisync directly.';
+        botMsg.innerText = CAVI_FALLBACK_REPLY;
     } finally {
         input.disabled = false;
         input.focus();
