@@ -1,50 +1,46 @@
+const CAVI_STANDALONE_API_ENDPOINT = '/api/chat';
+
+function appendCaviMessage(chatBox, className, message) {
+    const messageElement = document.createElement('div');
+    messageElement.className = className;
+    messageElement.textContent = message;
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    return messageElement;
+}
+
 async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const chatBox = document.getElementById('chatBox');
 
-    const input = document.getElementById("userInput");
-    const chatBox = document.getElementById("chatBox");
+    if (!input || !chatBox) return;
 
-    const userMessage = input.value;
+    const userMessage = input.value.trim();
+    if (!userMessage) return;
 
-    chatBox.innerHTML += `
-      <div class="user">
-        ${userMessage}
-      </div>
-    `;
+    appendCaviMessage(chatBox, 'user', userMessage);
+    input.value = '';
 
-    input.value = "";
+    const loadingMessage = appendCaviMessage(chatBox, 'bot', 'CAVi is thinking...');
 
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer YOUR_GROQ_API_KEY"
-        },
-        body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          messages: [
-            {
-              role: "system",
-              content: "You are CAVi, a professional Virtual CFO AI assistant."
+    try {
+        const response = await fetch(CAVI_STANDALONE_API_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            {
-              role: "user",
-              content: userMessage
-            }
-          ]
-        })
-      }
-    );
+            body: JSON.stringify({ message: userMessage }),
+        });
 
-    const data = await response.json();
+        const data = await response.json();
 
-    const botReply =
-      data.choices[0].message.content;
+        if (!response.ok) {
+            throw new Error(data?.error || 'Unable to get a response right now.');
+        }
 
-    chatBox.innerHTML += `
-      <div class="bot">
-        ${botReply}
-      </div>
-    `;
+        loadingMessage.textContent = data.reply || 'I could not generate a response. Please try again.';
+    } catch (error) {
+        loadingMessage.textContent = 'Sorry, CAVi is unavailable right now. Please try again later or contact Advisync directly.';
+    }
 }
