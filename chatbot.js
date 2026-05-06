@@ -25,7 +25,8 @@ async function sendMessage() {
     const loadingMessage = appendCaviMessage(chatBox, 'bot', 'CAVi is thinking...');
 
     try {
-        const response = await fetch(CAVI_STANDALONE_API_ENDPOINT, {
+        const CAVI_STANDALONE_API_ENDPOINT =
+    "https://cavi.vercel.app/api/chat";, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
