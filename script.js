@@ -125,8 +125,20 @@ function toggleChat() {
     chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
 }
 
+const CAVI_API_ENDPOINT = '/api/chat';
+
+function appendChatMessage(chatBody, className, message) {
+    const messageElement = document.createElement('div');
+    messageElement.className = className;
+    messageElement.innerText = message;
+    chatBody.appendChild(messageElement);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    return messageElement;
+}
+
 // SEND MESSAGE
-function sendMessage() {
+async function sendMessage() {
     const input = document.getElementById('userInput');
     const chatBody = document.getElementById('chatBody');
 
@@ -135,43 +147,28 @@ function sendMessage() {
     const userText = input.value.trim();
     if (!userText) return;
 
-    const userMsg = document.createElement('div');
-    userMsg.className = 'user-message';
-    userMsg.innerText = userText;
-    chatBody.appendChild(userMsg);
-
-    const botMsg = document.createElement('div');
-    botMsg.className = 'bot-message';
-    botMsg.innerText = getBotResponse(userText);
-    chatBody.appendChild(botMsg);
-
+    appendChatMessage(chatBody, 'user-message', userText);
     input.value = '';
-    chatBody.scrollTop = chatBody.scrollHeight;
-}
 
-// SIMPLE AI LOGIC
-function getBotResponse(input) {
-    const normalizedInput = input.toLowerCase();
+    const botMsg = appendChatMessage(chatBody, 'bot-message', 'CAVi is thinking...');
 
-    if (normalizedInput.includes('service')) {
-        return 'We offer GST, Income Tax, Compliance, Audit and Advisory services.';
+    try {
+        const response = await fetch(CAVI_API_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userText }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data?.error || 'Unable to get a response right now.');
+        }
+
+        botMsg.innerText = data.reply || 'I could not generate a response. Please try again.';
+    } catch (error) {
+        botMsg.innerText = 'Sorry, CAVi is unavailable right now. Please try again later or contact Advisync directly.';
     }
-
-    if (normalizedInput.includes('contact') || normalizedInput.includes('phone')) {
-        return 'You can reach us via Contact page or WhatsApp.';
-    }
-
-    if (normalizedInput.includes('location')) {
-        return 'We operate in Bangalore and Hyderabad.';
-    }
-
-    if (normalizedInput.includes('gst')) {
-        return 'We provide GST advisory, filings and litigation support.';
-    }
-
-    if (normalizedInput.includes('tax')) {
-        return 'We handle income tax, international taxation and planning.';
-    }
-
-    return 'Thanks for your question. For detailed help, chat with us on WhatsApp: https://wa.me/918501033023';
 }
