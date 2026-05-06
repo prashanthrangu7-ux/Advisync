@@ -1,5 +1,4 @@
-const CAVI_STANDALONE_API_ENDPOINT =
-  "https://cavi.vercel.app/api/chat";
+const CAVI_STANDALONE_API_ENDPOINT = "https://cavi.vercel.app/api/chat";
 
 function appendCaviMessage(chatBox, className, message) {
     const messageElement = document.createElement('div');
@@ -13,21 +12,23 @@ function appendCaviMessage(chatBox, className, message) {
 
 async function sendMessage() {
     const input = document.getElementById('userInput');
-    const chatBox = document.getElementById('chatBox');
+    const chatBox = document.getElementById('chatBody')
+        || document.getElementById('chatbox')
+        || document.getElementById('chatBox');
 
     if (!input || !chatBox) return;
 
     const userMessage = input.value.trim();
     if (!userMessage) return;
 
-    appendCaviMessage(chatBox, 'user', userMessage);
+    appendCaviMessage(chatBox, 'user-message', userMessage);
     input.value = '';
+    input.disabled = true;
 
-    const loadingMessage = appendCaviMessage(chatBox, 'bot', 'CAVi is thinking...');
+    const loadingMessage = appendCaviMessage(chatBox, 'bot-message is-thinking', 'CAVi is thinking...');
 
     try {
-        const CAVI_STANDALONE_API_ENDPOINT =
-    "https://cavi.vercel.app/api/chat";, {
+        const response = await fetch(CAVI_STANDALONE_API_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,8 +42,13 @@ async function sendMessage() {
             throw new Error(data?.error || 'Unable to get a response right now.');
         }
 
+        loadingMessage.classList.remove('is-thinking');
         loadingMessage.textContent = data.reply || 'I could not generate a response. Please try again.';
     } catch (error) {
+        loadingMessage.classList.remove('is-thinking');
         loadingMessage.textContent = 'Sorry, CAVi is unavailable right now. Please try again later or contact Advisync directly.';
+    } finally {
+        input.disabled = false;
+        input.focus();
     }
 }

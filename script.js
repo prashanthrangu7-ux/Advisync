@@ -118,7 +118,7 @@ if (toggleBtn && options) {
 }
 
 // ===== CHATBOT =====
-const CAVI_API_ENDPOINT = '/api/chat';
+const CAVI_API_ENDPOINT = 'https://cavi.vercel.app/api/chat';
 
 function createChatbotWidget() {
     const widget = document.createElement('div');
