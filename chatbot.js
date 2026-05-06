@@ -1,5 +1,5 @@
 const CAVI_STANDALONE_API_ENDPOINT =
-  "https://advisync.vercel.app/api/chat";
+  "/api/chat";
 
 function appendCaviMessage(chatBox, className, message) {
     const messageElement = document.createElement('div');
