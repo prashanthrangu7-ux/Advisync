@@ -137,28 +137,32 @@
     <a href="contact.html" class="btn">Schedule Consultation</a>
 </section>
 <div class="chatbot-container">
-
-    <div class="chatbot-box" id="chatbox">
+    <div class="chatbot-box" id="chatbox" aria-live="polite">
         <div class="chat-header">
-            <span>Advisync Assistant</span>
-            <button onclick="toggleChat()">×</button>
+            <div class="chat-profile">
+                <div class="chat-avatar" aria-hidden="true">A</div>
+                <div>
+                    <span>Advisync Assistant</span>
+                    <small>Online • typically replies instantly</small>
+                </div>
+            </div>
+            <button type="button" class="chat-close" onclick="toggleChat()" aria-label="Close chat">×</button>
         </div>
 
         <div class="chat-body" id="chatBody">
-            <div class="bot-message">Hi 👋 How can I assist you today?</div>
+            <div class="bot-message">Hi 👋 I’m your Advisync assistant. How can I help you today?</div>
         </div>
 
         <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Type your question...">
-            <button onclick="sendMessage()">Send</button>
+            <input type="text" id="userInput" placeholder="Type a message" aria-label="Type your message to Advisync Assistant">
+            <button type="button" onclick="sendMessage()" aria-label="Send message">➤</button>
         </div>
     </div>
 
-    <button class="chat-launcher" onclick="toggleChat()">
+    <button type="button" class="chat-launcher" onclick="toggleChat()" aria-label="Open Advisync Assistant chat">
         💬
     </button>
-
 </div>
+<script src="script.js"></script>
 </body>
 </html>
-<script src="script.js"></script>

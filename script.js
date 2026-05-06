@@ -117,15 +117,78 @@ if (toggleBtn && options) {
     });
 }
 
-// TOGGLE CHAT
-function toggleChat() {
-    const chat = document.getElementById('chatbox');
-    if (!chat) return;
+// ===== CHATBOT =====
+const CAVI_API_ENDPOINT = '/api/chat';
 
-    chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+function createChatbotWidget() {
+    const widget = document.createElement('div');
+    widget.className = 'chatbot-container';
+    widget.innerHTML = `
+        <div class="chatbot-box" id="chatbox" aria-live="polite">
+            <div class="chat-header">
+                <div class="chat-profile">
+                    <div class="chat-avatar" aria-hidden="true">A</div>
+                    <div>
+                        <span>Advisync Assistant</span>
+                        <small>Online • typically replies instantly</small>
+                    </div>
+                </div>
+                <button type="button" class="chat-close" onclick="toggleChat()" aria-label="Close chat">×</button>
+            </div>
+
+            <div class="chat-body" id="chatBody">
+                <div class="bot-message">Hi 👋 I’m your Advisync assistant. How can I help you today?</div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type a message" aria-label="Type your message to Advisync Assistant">
+                <button type="button" onclick="sendMessage()" aria-label="Send message">➤</button>
+            </div>
+        </div>
+
+        <button type="button" class="chat-launcher" onclick="toggleChat()" aria-label="Open Advisync Assistant chat">
+            💬
+        </button>
+    `;
+    document.body.appendChild(widget);
+
+    return widget;
 }
 
-const CAVI_API_ENDPOINT = '/api/chat';
+function setupChatbot() {
+    const widget = document.querySelector('.chatbot-container') || createChatbotWidget();
+    const chat = widget.querySelector('#chatbox');
+    const launcher = widget.querySelector('.chat-launcher');
+    const input = widget.querySelector('#userInput');
+
+    if (chat && !chat.hasAttribute('aria-hidden')) {
+        chat.setAttribute('aria-hidden', 'true');
+    }
+
+    launcher?.setAttribute('aria-expanded', chat?.classList.contains('is-open') ? 'true' : 'false');
+
+    input?.addEventListener('keydown', event => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+}
+
+function toggleChat(forceOpen) {
+    const chat = document.getElementById('chatbox');
+    const launcher = document.querySelector('.chat-launcher');
+    if (!chat) return;
+
+    const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !chat.classList.contains('is-open');
+    chat.classList.toggle('is-open', shouldOpen);
+    chat.setAttribute('aria-hidden', String(!shouldOpen));
+    launcher?.setAttribute('aria-expanded', String(shouldOpen));
+
+    if (shouldOpen) {
+        setTimeout(() => document.getElementById('userInput')?.focus(), 150);
+    }
+}
 
 function appendChatMessage(chatBody, className, message) {
     const messageElement = document.createElement('div');
@@ -147,10 +210,12 @@ async function sendMessage() {
     const userText = input.value.trim();
     if (!userText) return;
 
+    toggleChat(true);
     appendChatMessage(chatBody, 'user-message', userText);
     input.value = '';
+    input.disabled = true;
 
-    const botMsg = appendChatMessage(chatBody, 'bot-message', 'CAVi is thinking...');
+    const botMsg = appendChatMessage(chatBody, 'bot-message is-thinking', 'CAVi is typing...');
 
     try {
         const response = await fetch(CAVI_API_ENDPOINT, {
@@ -167,8 +232,19 @@ async function sendMessage() {
             throw new Error(data?.error || 'Unable to get a response right now.');
         }
 
+        botMsg.classList.remove('is-thinking');
         botMsg.innerText = data.reply || 'I could not generate a response. Please try again.';
     } catch (error) {
+        botMsg.classList.remove('is-thinking');
         botMsg.innerText = 'Sorry, CAVi is unavailable right now. Please try again later or contact Advisync directly.';
+    } finally {
+        input.disabled = false;
+        input.focus();
     }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupChatbot);
+} else {
+    setupChatbot();
 }
