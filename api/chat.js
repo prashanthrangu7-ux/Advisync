@@ -1,58 +1,78 @@
+const GROQ_CHAT_COMPLETIONS_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const CAVI_MODEL = 'llama-3.3-70b-versatile';
+const SYSTEM_PROMPT = [
+  'You are CAVi, Advisync\'s AI-powered Virtual CFO assistant.',
+  'Help website visitors understand Advisync services, GST compliance, ITC reconciliation, TDS reconciliation, AP/AR reconciliation, and how to contact Advisync.',
+  'Keep answers concise, practical, and professional. If a request needs personalized tax, legal, or financial advice, recommend contacting Advisync for a consultation.',
+].join(' ');
+
+function setCorsHeaders(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
 export default async function handler(req, res) {
+  setCorsHeaders(res);
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader(
-  "Access-Control-Allow-Credentials",
-  "true"
-);
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
 
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed. Use POST.' });
+  }
+
+  if (!process.env.GROQ_API_KEY) {
+    return res.status(500).json({ error: 'Chatbot is not configured on this deployment.' });
+  }
+
+  const message = typeof req.body?.message === 'string' ? req.body.message.trim() : '';
+
+  if (!message) {
+    return res.status(400).json({ error: 'Please provide a message.' });
   }
 
   try {
-
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization":
-            `Bearer ${process.env.GROQ_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are CAVi, an AI-powered Virtual CFO assistant."
-            },
-            {
-              role: "user",
-              content: req.body.message
-            }
-          ]
-        })
-      }
-    );
-
-    const data = await response.json();
-
-    return res.status(200).json({
-      reply:
-        data.choices[0].message.content
+    const response = await fetch(GROQ_CHAT_COMPLETIONS_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: CAVI_MODEL,
+        messages: [
+          {
+            role: 'system',
+            content: SYSTEM_PROMPT,
+          },
+          {
+            role: 'user',
+            content: message,
+          },
+        ],
+        temperature: 0.4,
+        max_tokens: 500,
+      }),
     });
 
-  } catch(error) {
+    const data = await response.json().catch(() => ({}));
 
-    console.log(error);
+    if (!response.ok) {
+      const upstreamMessage = data?.error?.message || 'Chat provider request failed.';
+      return res.status(response.status).json({ error: upstreamMessage });
+    }
 
-    return res.status(500).json({
-      reply: "Server error occurred."
-    });
+    const reply = data?.choices?.[0]?.message?.content?.trim();
+
+    if (!reply) {
+      return res.status(502).json({ error: 'Chat provider returned an empty response.' });
+    }
+
+    return res.status(200).json({ reply });
+  } catch (error) {
+    console.error('CAVi chatbot error:', error);
+    return res.status(500).json({ error: 'Server error occurred.' });
   }
 }
