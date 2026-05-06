@@ -28,7 +28,7 @@ async function sendMessage() {
     try {
         const CAVI_STANDALONE_API_ENDPOINT =
     const CAVI_STANDALONE_API_ENDPOINT =
-  "https://advisync.vercel.app/api/chat"; {
+  "/api/chat"; {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
