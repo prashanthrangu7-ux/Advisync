@@ -84,6 +84,12 @@ header {
     line-height: 1;
     padding: 6px 10px;
     cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.nav-toggle[aria-expanded="true"] {
+    background: rgba(212, 175, 55, 0.18);
+    transform: rotate(90deg);
 }
 
 /* NAV */
@@ -579,6 +585,7 @@ footer {
         top: 69px;
         left: 0;
         right: 0;
+        z-index: 999;
         background: rgba(9, 23, 43, 0.98);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -607,6 +614,10 @@ footer {
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
+    }
+
+    body.nav-open {
+        overflow-x: hidden;
     }
 
     .section {
