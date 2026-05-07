@@ -1,75 +1,95 @@
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
+// ===== PAGE INTERACTIONS =====
+function setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const target = document.querySelector(this.getAttribute('href'));
+
+            if (!target) return;
+
+            e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth' });
-        }
+        });
     });
-});
+}
 
-// ===== FADE-IN ON SCROLL (UPGRADED) =====
-const faders = document.querySelectorAll('.fade-in');
+function setupFadeInOnScroll() {
+    const faders = document.querySelectorAll('.fade-in');
 
-const appearOptions = {
-    threshold: 0.2,
-};
+    if (!faders.length) return;
 
-const appearOnScroll = new IntersectionObserver(function (entries, observer) {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+    if (!('IntersectionObserver' in window)) {
+        faders.forEach(el => el.classList.add('show'));
+        return;
+    }
 
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
+    const appearOptions = {
+        threshold: 0.2,
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+        });
+    }, appearOptions);
+
+    faders.forEach(el => {
+        appearOnScroll.observe(el);
     });
-}, appearOptions);
+}
 
-faders.forEach(el => {
-    appearOnScroll.observe(el);
-});
+function setupHeaderEffects() {
+    const header = document.querySelector('header');
 
-// ===== STICKY HEADER EFFECT =====
-const header = document.querySelector('header');
+    if (!header) return;
 
-if (header) {
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.style.background = '#0B1F3A';
             header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
         } else {
-            header.style.background = 'transparent';
+            header.style.background = 'rgba(11, 31, 58, 0.95)';
             header.style.boxShadow = 'none';
         }
     });
 }
 
-// ===== ACTIVE NAV LINK =====
-const navLinks = document.querySelectorAll('nav a');
-const navToggle = document.getElementById('navToggle');
+function setupNavigation() {
+    const nav = document.querySelector('header nav');
+    const navLinks = document.querySelectorAll('header nav a');
+    const navToggle = document.getElementById('navToggle');
 
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        const isOpen = document.body.classList.toggle('nav-open');
-        navToggle.setAttribute('aria-expanded', String(isOpen));
+    if (navToggle && nav) {
+        if (!nav.id) {
+            nav.id = 'primaryNav';
+        }
+
+        navToggle.setAttribute('aria-controls', nav.id);
+        navToggle.addEventListener('click', () => {
+            const isOpen = document.body.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+    }
+
+    navLinks.forEach(link => {
+        if (link.href === window.location.href) {
+            link.style.color = '#D4AF37';
+        }
+
+        link.addEventListener('click', () => {
+            document.body.classList.remove('nav-open');
+            navToggle?.setAttribute('aria-expanded', 'false');
+        });
     });
 }
 
-navLinks.forEach(link => {
-    if (link.href === window.location.href) {
-        link.style.color = '#D4AF37';
-    }
+function setupFormValidation() {
+    const form = document.querySelector('form');
 
-    link.addEventListener('click', () => {
-        document.body.classList.remove('nav-open');
-        navToggle?.setAttribute('aria-expanded', 'false');
-    });
-});
+    if (!form) return;
 
-// ===== FORM VALIDATION =====
-const form = document.querySelector('form');
-
-if (form) {
     form.addEventListener('submit', function (e) {
         const name = form.querySelector('input[name="name"]');
         const email = form.querySelector('input[name="email"]');
@@ -88,33 +108,42 @@ if (form) {
     });
 }
 
-// ===== BUTTON CLICK FEEDBACK =====
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        btn.style.transform = 'scale(0.96)';
-        setTimeout(() => {
-            btn.style.transform = 'scale(1)';
-        }, 150);
-    });
-});
-
-if (header) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
+function setupButtonFeedback() {
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.style.transform = 'scale(0.96)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 150);
+        });
     });
 }
 
-const toggleBtn = document.getElementById('contactToggle');
-const options = document.querySelector('.contact-options');
+function setupContactOptions() {
+    const toggleBtn = document.getElementById('contactToggle');
+    const options = document.querySelector('.contact-options');
 
-if (toggleBtn && options) {
-    toggleBtn.addEventListener('click', () => {
-        options.classList.toggle('show');
-    });
+    if (toggleBtn && options) {
+        toggleBtn.addEventListener('click', () => {
+            options.classList.toggle('show');
+        });
+    }
+}
+
+function setupPageInteractions() {
+    setupSmoothScroll();
+    setupFadeInOnScroll();
+    setupHeaderEffects();
+    setupNavigation();
+    setupFormValidation();
+    setupButtonFeedback();
+    setupContactOptions();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupPageInteractions);
+} else {
+    setupPageInteractions();
 }
 
 // ===== CHATBOT =====
