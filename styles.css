@@ -580,7 +580,7 @@ footer {
         justify-content: center;
     }
 
-    nav {
+    header nav {
         position: fixed;
         top: 69px;
         left: 0;
@@ -599,18 +599,19 @@ footer {
         transition: all 0.28s ease;
     }
 
-    nav a {
+    header nav a {
         margin-left: 0;
         padding: 10px 8px;
         border-radius: 6px;
         font-size: 15px;
     }
 
-    nav a:hover {
+    header nav a:hover {
         background: rgba(212, 175, 55, 0.1);
     }
 
-    body.nav-open nav {
+    body.nav-open header nav.is-open,
+    header.nav-open nav {
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
