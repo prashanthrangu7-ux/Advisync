@@ -75,8 +75,7 @@ function setupNavigation() {
         const setNavigationState = isOpen => {
             navToggle.setAttribute('aria-expanded', String(isOpen));
             nav.setAttribute('aria-hidden', String(mobileQuery.matches && !isOpen));
-            document.body.classList.toggle('nav-open', isOpen);
-            header.classList.toggle('nav-open', isOpen);
+            document.body.classList.toggle('mobile-nav-open', isOpen);
             nav.classList.toggle('is-open', isOpen);
         };
 
