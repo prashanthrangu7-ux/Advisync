@@ -58,50 +58,40 @@ function setupHeaderEffects() {
 
 function setupNavigation() {
     const headers = document.querySelectorAll('header');
+    const mobileQuery = window.matchMedia
+        ? window.matchMedia('(max-width: 768px)')
+        : { matches: false };
 
     headers.forEach((header, index) => {
         const nav = header.querySelector('nav');
         const navToggle = header.querySelector('.nav-toggle');
 
-        if (!nav || !navToggle) return;
+        if (!nav || !navToggle || navToggle.dataset.navigationReady === 'true') return;
 
         if (!nav.id) {
             nav.id = index === 0 ? 'primaryNav' : `primaryNav-${index + 1}`;
         }
 
-        const isMobileNavigation = () => window.matchMedia('(max-width: 768px)').matches;
         const setNavigationState = isOpen => {
             navToggle.setAttribute('aria-expanded', String(isOpen));
-            nav.setAttribute('aria-hidden', String(isMobileNavigation() && !isOpen));
+            nav.setAttribute('aria-hidden', String(mobileQuery.matches && !isOpen));
+            document.body.classList.toggle('nav-open', isOpen);
+            header.classList.toggle('nav-open', isOpen);
+            nav.classList.toggle('is-open', isOpen);
         };
 
-        const closeNavigation = () => {
-            document.body.classList.remove('nav-open');
-            header.classList.remove('nav-open');
-            nav.classList.remove('is-open');
-            setNavigationState(false);
-        };
+        const closeNavigation = () => setNavigationState(false);
+        const toggleNavigation = () => setNavigationState(!nav.classList.contains('is-open'));
 
-        const openNavigation = () => {
-            document.body.classList.add('nav-open');
-            header.classList.add('nav-open');
-            nav.classList.add('is-open');
-            setNavigationState(true);
-        };
-
+        navToggle.dataset.navigationReady = 'true';
         navToggle.setAttribute('type', 'button');
         navToggle.setAttribute('aria-controls', nav.id);
-        setNavigationState(false);
+        closeNavigation();
 
         navToggle.addEventListener('click', event => {
             event.preventDefault();
             event.stopPropagation();
-
-            if (nav.classList.contains('is-open')) {
-                closeNavigation();
-            } else {
-                openNavigation();
-            }
+            toggleNavigation();
         });
 
         nav.querySelectorAll('a').forEach(link => {
@@ -113,18 +103,22 @@ function setupNavigation() {
         });
 
         document.addEventListener('click', event => {
-            if (!header.contains(event.target)) {
+            if (nav.classList.contains('is-open') && !header.contains(event.target)) {
                 closeNavigation();
             }
         });
 
         document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') {
+            if (event.key === 'Escape' && nav.classList.contains('is-open')) {
                 closeNavigation();
             }
         });
 
-        window.addEventListener('resize', closeNavigation);
+        if (typeof mobileQuery.addEventListener === 'function') {
+            mobileQuery.addEventListener('change', closeNavigation);
+        } else if (typeof mobileQuery.addListener === 'function') {
+            mobileQuery.addListener(closeNavigation);
+        }
     });
 }
 
