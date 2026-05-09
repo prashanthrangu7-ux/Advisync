@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDS Insights | Income Tax | Advisync</title>
+    <meta name="description" content="Professional TDS insight covering deduction controls, return timelines, reconciliation, certificates, and governance for Indian businesses.">
+
+    <link rel="stylesheet" href="/styles.css">
+
+    <style>
+        .tds-hero {
+            padding: 95px 60px 70px;
+            background: linear-gradient(135deg, #0B1F3A 0%, #09172b 58%, #132f55 100%);
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+            color: #c0c7d1;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #D4AF37;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #b0b8c5;
+        }
+
+        .tds-hero h1 {
+            max-width: 820px;
+            font-size: 46px;
+            line-height: 1.15;
+        }
+
+        .tds-hero h1 span {
+            color: #D4AF37;
+        }
+
+        .tds-hero p {
+            max-width: 720px;
+            color: #d9dee7;
+            margin-top: 20px;
+        }
+
+        .tds-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.8fr);
+            gap: 34px;
+            padding: 70px 60px;
+        }
+
+        .content-panel,
+        .summary-panel,
+        .checklist-card {
+            background: #09172b;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid #D4AF37;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .content-panel {
+            margin-bottom: 28px;
+        }
+
+        .content-panel h2,
+        .summary-panel h2,
+        .checklist-card h2 {
+            color: #ffffff;
+            font-size: 28px;
+        }
+
+        .content-panel p,
+        .content-panel li,
+        .summary-panel li,
+        .checklist-card li {
+            color: #cfd6e1;
+        }
+
+        .content-panel ul,
+        .summary-panel ul,
+        .checklist-card ul {
+            padding-left: 20px;
+            margin-top: 16px;
+        }
+
+        .content-panel li,
+        .summary-panel li,
+        .checklist-card li {
+            margin-bottom: 12px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .metric-card {
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .metric-card strong {
+            display: block;
+            color: #D4AF37;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .summary-panel {
+            position: sticky;
+            top: 105px;
+        }
+
+        .summary-panel .btn {
+            margin-top: 16px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .section-band {
+            padding: 70px 60px;
+            background: #09172b;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 28px;
+        }
+
+        .checklist-card {
+            background: rgba(11, 31, 58, 0.72);
+            min-height: 100%;
+        }
+
+        .cta-section {
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .cta-section p {
+            max-width: 680px;
+            margin: 0 auto 24px;
+        }
+
+        @media (max-width: 900px) {
+            .tds-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tds-hero,
+            .tds-layout,
+            .section-band,
+            .cta-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .tds-hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="logo">Advisync</div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav>
+        <a href="/index.html">Home</a>
+        <a href="/cavi.html">CAVi</a>
+        <a href="/services.html">Services</a>
+        <a href="/insights/">Insights</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="tds-hero">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/index.html">Home</a>
+        <span aria-hidden="true">&gt;</span>
+        <a href="/insights/">Insights</a>
+        <span aria-hidden="true">&gt;</span>
+        <a href="/insights/">Income Tax</a>
+        <span aria-hidden="true">&gt;</span>
+        <span>TDS</span>
+    </nav>
+
+    <h1>Tax Deducted at Source <span>(TDS)</span>: practical controls for compliant businesses</h1>
+    <p>
+        TDS compliance works best when deduction logic, vendor documentation, challan payments,
+        return filing, and reconciliation are managed as a single governance cycle rather than as
+        disconnected monthly tasks.
+    </p>
+</section>
+
+<main>
+    <section class="tds-layout">
+        <div>
+            <article class="content-panel fade-in">
+                <h2>What TDS means for your finance function</h2>
+                <p>
+                    TDS requires the payer to deduct tax while making specified payments and deposit it with the
+                    government within prescribed timelines. For businesses, the real risk is not only missed
+                    deduction; it is the mismatch between books, challans, returns, Form 26AS/AIS, and certificates.
+                </p>
+                <div class="metric-grid" aria-label="TDS focus areas">
+                    <div class="metric-card">
+                        <strong>Deduct</strong>
+                        <p>Apply the right section, threshold, rate, PAN status, and lower-deduction certificate checks.</p>
+                    </div>
+                    <div class="metric-card">
+                        <strong>Deposit</strong>
+                        <p>Map challans accurately and keep payment evidence aligned to entity, month, and TAN.</p>
+                    </div>
+                    <div class="metric-card">
+                        <strong>Report</strong>
+                        <p>File returns with clean deductee masters, transaction references, and certificate readiness.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-panel fade-in">
+                <h2>Core compliance workflow</h2>
+                <ul>
+                    <li><strong>Vendor onboarding:</strong> capture PAN, residency, GSTIN, MSME status, bank details, declarations, and exemption or lower-deduction certificates.</li>
+                    <li><strong>Invoice review:</strong> classify the nature of payment before booking or payment so the applicable TDS section and threshold are validated early.</li>
+                    <li><strong>Monthly closure:</strong> reconcile expense ledgers, TDS payable ledgers, challan payments, and open deductions before month-end sign-off.</li>
+                    <li><strong>Quarterly filing:</strong> validate deductee data, challan utilisation, short deduction exceptions, and return acknowledgements before issuing certificates.</li>
+                    <li><strong>Mismatch resolution:</strong> track notices, defaults, interest, corrections, and deductee escalations through a documented closure log.</li>
+                </ul>
+            </article>
+
+            <article class="content-panel fade-in">
+                <h2>How Advisync strengthens TDS governance</h2>
+                <p>
+                    Advisync combines compliance expertise with automation-first reconciliation to help teams
+                    reduce avoidable interest, late fees, and deductee disputes. Our approach creates a clear audit
+                    trail from invoice classification to return filing and certificate support.
+                </p>
+                <ul>
+                    <li>Periodic TDS health checks and exception reports for finance leaders.</li>
+                    <li>Ledger-to-return reconciliation for challans, deductees, PANs, and section-wise deductions.</li>
+                    <li>Process documentation, maker-checker controls, and support for correction statements.</li>
+                </ul>
+            </article>
+        </div>
+
+        <aside class="summary-panel fade-in" aria-label="TDS summary">
+            <h2>At a glance</h2>
+            <ul>
+                <li>Best for CFOs, founders, finance controllers, and compliance teams.</li>
+                <li>Focus areas include deduction accuracy, challan mapping, return quality, and mismatch closure.</li>
+                <li>Use monthly reconciliations to avoid quarter-end surprises and deductee escalations.</li>
+            </ul>
+            <a href="/contact.html" class="btn">Discuss TDS Support</a>
+        </aside>
+    </section>
+
+    <section class="section-band">
+        <h2 class="section-title">TDS readiness checklist</h2>
+        <div class="checklist-grid">
+            <div class="checklist-card fade-in">
+                <h2>Documentation</h2>
+                <ul>
+                    <li>PAN and TAN records are current.</li>
+                    <li>Lower or nil deduction certificates are tracked with validity dates.</li>
+                    <li>Vendor declarations are stored centrally.</li>
+                </ul>
+            </div>
+            <div class="checklist-card fade-in">
+                <h2>Controls</h2>
+                <ul>
+                    <li>Payment nature is reviewed before booking.</li>
+                    <li>Thresholds and rates are configured consistently.</li>
+                    <li>Exceptions require documented approvals.</li>
+                </ul>
+            </div>
+            <div class="checklist-card fade-in">
+                <h2>Reconciliation</h2>
+                <ul>
+                    <li>Books, challans, returns, and certificates are matched.</li>
+                    <li>Short deductions and late deposits are quantified.</li>
+                    <li>Correction statement status is monitored to closure.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<section class="cta-section">
+    <h2>Need a cleaner TDS compliance cycle?</h2>
+    <p>
+        Build a reliable TDS calendar, reduce mismatches, and give your leadership team better visibility into
+        statutory risk and working-capital impact.
+    </p>
+    <a href="/contact.html" class="btn">Schedule Consultation</a>
+</section>
+
+<script src="/script.js"></script>
+</body>
+</html>
