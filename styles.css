@@ -551,17 +551,65 @@ footer {
 
 .contact-widget {
     position: fixed;
-    bottom: 25px;
     right: 25px;
-    z-index: 1000;
+    bottom: 100px;
+    z-index: 1090;
+    display: grid;
+    justify-items: end;
+    gap: 12px;
+}
+
+.contact-options {
+    display: grid;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.contact-options.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.contact-widget .option,
+.main-btn {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+    cursor: pointer;
+}
+
+.contact-widget .option {
+    font-size: 22px;
+}
+
+.contact-widget .whatsapp {
+    background: #25d366;
+}
+
+.contact-widget .call {
+    background: #128c7e;
+}
+
+.contact-widget .email {
+    background: #d44638;
 }
 
 .main-btn {
     background: var(--gold);
-    padding: 16px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
+    color: #09172b;
+    font-size: 22px;
 }
 
 /* =========================
@@ -676,6 +724,11 @@ footer {
     .chat-launcher {
         margin-left: auto;
         display: block;
+    }
+
+    .contact-widget {
+        right: 16px;
+        bottom: 84px;
     }
 }
 .cavi-fab{
