@@ -214,11 +214,11 @@ function createChatbotWidget() {
             </div>
 
             <div class="chat-body" id="chatBody">
-                <div class="bot-message">Hi 👋 I’m your CAVi - Your Virtual Assistant. How can I help you today?</div>
+                <div class="bot-message">Hi 👋 I’m CAVi - Your Virtual Assistant. How can I help you today?</div>
             </div>
 
             <div class="chat-input">
-                <input type="text" id="userInput" placeholder="Type a message" aria-label="Type your message to CAVi - Your Virtual Assistant">
+                <input type="text" id="userInput" placeholder="Type a message" aria-label="Ask any question to CAVi - you will get an instant reponse">
                 <button type="button" onclick="sendMessage()" aria-label="Send message">➤</button>
             </div>
         </div>
