@@ -285,6 +285,38 @@ nav a:hover::after {
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
+.capability-card {
+    position: relative;
+}
+
+.card-cta {
+    display: inline-flex;
+    margin-top: 8px;
+    color: var(--navy);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.card-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+}
+
+.card-cta:hover {
+    color: #000000;
+}
+
+.card-cta:focus-visible {
+    outline: none;
+}
+
+.card-cta:focus-visible::after {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+}
+
 /* =========================
    STATS
 ========================= */
