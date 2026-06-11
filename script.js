@@ -144,6 +144,21 @@ function setupFormValidation() {
     });
 }
 
+function setupCaviPlatformLaunch() {
+    const launchButton = document.getElementById('caviLaunchButton');
+
+    if (!launchButton) return;
+
+    launchButton.addEventListener('click', event => {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+            return;
+        }
+
+        event.preventDefault();
+        window.location.assign(launchButton.href);
+    });
+}
+
 function setupButtonFeedback() {
     document.querySelectorAll('.btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -172,6 +187,7 @@ function setupPageInteractions() {
     setupHeaderEffects();
     setupNavigation();
     setupFormValidation();
+    setupCaviPlatformLaunch();
     setupButtonFeedback();
     setupContactOptions();
 }
